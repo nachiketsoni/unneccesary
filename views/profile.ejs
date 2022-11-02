@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../stylesheets/profile.css">
 </head>
 <body>
+  <% include Partial/loader.ejs %>
+
    <div id="main">
     <div id="left">
         <form action="/update" method="post" enctype="multipart/form-data" id="profile">
@@ -49,7 +51,7 @@
             position: absolute;
             left: 50%;
             top: 50% !important;
-            z-index: 99999999999999999999;
+            z-index: 999;
             transform: translate(-50%, -50%);
             font-size: 30px;
             font-weight: 400;
