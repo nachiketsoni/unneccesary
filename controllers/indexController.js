@@ -5,7 +5,11 @@ const Post = require("../models/postModel");
 const { sendToken } = require("../utils/auth");
 const formidable = require("formidable");
 const cloudinary = require("cloudinary");
-
+const { google } = require("googleapis");
+const youtube = google.youtube({
+  version: "v3",
+  auth: process.env.GOOGLEAPIKEY,
+});
 /** @api {get} / homepage */
 exports.homepage = AsyncError(async (req, res, next) => {
   const post = await Post.find({}).populate("owner");
@@ -91,6 +95,31 @@ exports.search = AsyncError(async (req, res, next) => {
   
   res.render("search");
   // res.status(200).json("hompage");
+});
+exports.txttospeech = AsyncError(async (req, res, next) => {
+  
+  res.render("txttospeech");
+  // res.status(200).json("hompage");
+});
+exports.bot = AsyncError(async (req, res, next) => {
+  
+  console.log(req.params.message);
+  // res.json(req.params.id)
+  try {
+    const searchQuery = req.params.message;
+    const response = await youtube.search.list({
+      part: "snippet",
+      q: searchQuery,
+      type: "video",
+    });
+    const titles = response.data.items.map((item) => item.snippet.title);
+    const ids = response.data.items;
+    console.log(titles);
+    res.json(response.data.items);
+  } catch (err) {
+    console.log(err);
+    next();
+  }
 });
 
 

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const {isLoggedIn} = require("../utils/isLoggedIn")
-const {homepage ,signup ,login , logout ,update, follow, all, createPost, comment, likes ,weather, search, favourite, loginPage, newPost, singlePost, commentDelete, searchApi, profile, others, userDataAPI, clickedUser, clickedUserProfile} = require("../controllers/indexController.js")
+const {homepage ,signup ,login , logout ,update, follow, all, createPost, comment, likes ,weather, search, favourite, loginPage, newPost, singlePost, commentDelete, searchApi, profile, others, userDataAPI, clickedUser, clickedUserProfile, txttospeech, bot} = require("../controllers/indexController.js")
 
 /** @api GET / homepage */
 router.get('/',isLoggedIn, homepage);
@@ -28,6 +28,8 @@ router.get('/search', search);
 router.get('/api/search/:type/:search', searchApi);
 /** @api GET / fav */
 router.get('/favourite',isLoggedIn, favourite);
+/** @api GET / txttospeech */
+router.get('/txttospeech', txttospeech);
 
 
 /**@api POST / signup */
@@ -58,8 +60,11 @@ router.get("/delete/comment/:postID/:commentID",isLoggedIn, commentDelete);
 
 /**@api GET / all  */
 router.get("/all",isLoggedIn, all);
+
+router.get("/bot/search/:message", isLoggedIn, bot);
+
 /**@api GET / *  */
-router.get("*", others);
+// router.get("*", others);
 
 module.exports = router;
 
