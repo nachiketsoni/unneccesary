@@ -20,8 +20,14 @@
                     <img src="../images/SearchPurple.png" alt="" />
                 </button>
                 <div class="l"></div>
-                <input type="search" id="searchBar" list="Suggestion" placeholder="Search City" />
-                <datalist id="Suggestion"> </datalist>
+                <input type="search" id="searchBar" autocomplete="off" list="Suggestion" placeholder="Search City" />
+                <div id="Suggestion">
+                   
+                    <!-- <li onclick="select(this)" >Bhopal</li> -->
+                    
+                 
+                </div>
+                <!-- <datalist id="Suggestion">   </datalist> -->
             </form>
         </div>
         <div id="cel">
@@ -44,9 +50,15 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  
         <script>
+            const select = (e) => {
+                document.getElementById("searchBar").value = e.innerHTML;
+                document.getElementById("Suggestion").style.display = "none";
+            }
             var timers = "";
             var timer = (searchValue) => {
                 timers = setTimeout(() => {
+                    document.getElementById("Suggestion").style.display = "flex";
+                document.getElementById("Suggestion").innerHTML = `<li onclick="select(this)" >Loading...</li>`;
                     Suggestion(searchValue);
                 }, 2000);
             };
@@ -55,16 +67,21 @@
                 let searchValue = e.target.value;
 
                 console.log(searchValue);
-                clearTimeout(timers);
+                // clearTimeout(timers);
 
                 if (searchValue.length % 3 === 0 && searchValue.length > 0) {
+                document.getElementById("Suggestion").style.display = "flex";
+                document.getElementById("Suggestion").innerHTML = `<li onclick="select(this)" >Loading...</li>`;
+
                     Suggestion(searchValue);
                 } else {
-                    timer(searchValue);
+                        document.getElementById("Suggestion").style.display = "none";
+                        timer(searchValue);
                 }
             });
 
             var Suggestion = (cityname) => {
+
                 $.ajax({
                     method: "GET",
                     url: `https://api.api-ninjas.com/v1/city?limit=5&name=${cityname}`,
@@ -77,10 +94,12 @@
                     success: function (result) {
                         console.log(result);
                         let Suggestion = document.querySelector("#Suggestion");
+                         document.getElementById("Suggestion").style.display = "flex";
+
                         Suggestion.innerHTML = "";
                         result.forEach((element) => {
                             console.log(element);
-                            Suggestion.innerHTML += `<option value="${element.name}">`;
+                            Suggestion.innerHTML += ` <li onclick="select(this)" >${element.name}</li>`;
                         });
                     },
                     error: function ajaxError(jqXHR) {
@@ -123,8 +142,11 @@
         };
         
             const searchSubmit = document.querySelector("#sea");
+
             searchSubmit.addEventListener("submit", (e) => {
                 e.preventDefault();
+                document.getElementById("Suggestion").style.display = "none";
+
                 document.querySelector("#cel").innerHTML = '<img src="../images/loader.gif" alt="">';
                 let searchValue = document.querySelector("#sea input").value;
                 console.log(searchValue);

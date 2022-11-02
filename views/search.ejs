@@ -61,7 +61,6 @@
         >
           No Data to show Yet ☹️
         </h1>
-
         <!-- <div id="account">
             <div id="user">
               <div class="left">
@@ -94,6 +93,7 @@
       var successData = (data) => {
         console.log(data);
         document.querySelector(".sl1").innerHTML = "";
+
         if (data.length == 0) {
           document.querySelector(".sl1").innerHTML = `
           <h1 style="position: absolute; left:50%; top: 100%; z-index:999999999999; transform: translate(-50%,0%); font-size: 3vmax; font-weight: 400; color: rgba(110, 110, 110, 0.725);" >No Data Found ☹️</h1>
@@ -101,6 +101,7 @@
           `;
         } else {
           try {
+        document.querySelector(".sl1").style = "justify-content:  flex-start;";
             
             data.forEach((e) => {
               document.querySelector(".sl1").innerHTML += `
@@ -131,15 +132,17 @@
           }
       };
 
-      var userData = (data) => {
-        console.log(data);
+      var userData = (alldata) => {
+        var data = alldata;
+        console.log(alldata);
         document.querySelector(".sl1").innerHTML = "";
         if (data.length > 0) {
           try {
+            document.querySelector(".sl1").style = "justify-content: space-around;";
             data.forEach((e) => {
               document.querySelector(".sl1").innerHTML += `
             <div id="account">
-            <div id="user">
+            <a href="/user/${e._id}" id="user">
               <div class="left">
   
                 <img src="${e.avatar.url}" alt="">
@@ -149,12 +152,15 @@
                 <h3>Follower : ${e.following.length}</h3>
                 <h3> Following : ${e.followers.length}</h3>
                  
-                <a href="/follow/${e._id}"> Follow +</a>
               </div>
   
-            </div>
+            </a>
         </div>
               `;
+
+
+
+
             });
           } catch (error) {
             document.querySelector(".sl1").innerHTML = `
@@ -191,7 +197,9 @@
 
       form.addEventListener("submit", (e) => {
         document.querySelector(".sl1").innerHTML =
-          '<img  style="position: absolute; left:50%; top: 50%;  z-index:999999999999; transform: translate(-50%,-50%); src="../images/loader.gif" alt="">';
+       
+
+          ' <img  style="position: absolute; z-index: 500; left: 50%; transform:translate(-50%,0%);" src="../images/loader.gif" alt="">';
         e.preventDefault();
       });
     </script>

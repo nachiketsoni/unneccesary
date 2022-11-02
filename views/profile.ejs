@@ -36,7 +36,7 @@
                 <button class="btn" type="submit" onclick="toggle(this)"  id="save"  ><img src="../images/EditPurple.png" alt=""></button>
                 <a class="btn" href="/logout"  id="Logout"><img src="../images/LogOutPurple.png" alt=""></a>
             </div>
-          </div>
+          </div>  
 
 
         </form>
@@ -44,39 +44,20 @@
     <div class="line"></div>
     <div id="right">
         <div class="sl1">
-            <!-- <div class="post">
-              <div class="postImg">
-                <a href="">
-                  <img
-                    src="https://images.unsplash.com/photo-1666834475635-910066e38f90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
-                    alt=""
-                  />
-                </a>
-                <a href="" class="owner">
-                  <img
-                    src="https://images.unsplash.com/photo-1666834475635-910066e38f90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
-                    alt=""
-                  /><span>nxchikxt</span>
-                </a>
-              </div>
-              <h3>Design Of The Day</h3>
-            </div> -->
-    
-            <!-- <div id="account">
-                <div id="user">
-                  <div class="left">
-    
-                    <img src="https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1854&q=80" alt="">
-                    <h3>nxchikxt</h3>
-                  </div>
-                  <div class="right">
-                    <h3>Follower : 12K</h3>
-                    <h3> Following : 1K</h3>
-                    <a href=""> Follow +</a>
-                  </div>
-    
-                </div>
-            </div> -->
+          <h1
+          style="
+            position: absolute;
+            left: 50%;
+            top: 50% !important;
+            z-index: 99999999999999999999;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            font-weight: 400;
+            color: rgba(110, 110, 110, 0.725);
+          "
+        >
+          No Data to show Yet ☹️
+        </h1>
           </div>
     </div>
    </div>
@@ -128,12 +109,12 @@
           data.forEach((e) => {
             document.querySelector(".sl1").innerHTML += `
             <div id="account">
-            <div id="user">
-              <div class="left">
+            <div href="/user/${e._id}" id="user">
+              <a href="/user/${e._id}" class="left">
 
                 <img src="${e.avatar.url}" alt="">
                 <h3>${e.name}</h3>
-              </div>
+              </a>
               <div class="right">
                 <h3> Followers : ${e.followers.length}</h3>
                 <h3>Following : ${e.following.length}</h3>

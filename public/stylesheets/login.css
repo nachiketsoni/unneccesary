@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 @font-face {
   font-family: Aeonik;
-  src: url(../font/Aeonik-Regular.otf);
+  src: url(../font/Aeonik-Regular.woff2);
   font-weight: 400;
 }
 body {
@@ -42,14 +42,14 @@ body {
 }
 .form ul li{
     text-align: left;
-    font-size: .7vmax;
+    font-size:10px;
     margin-bottom: 5px;
 }
 .form small{
     display: block;
     margin-top: 2vmax;
     color: rgb(28, 88, 240);
-    font-size: .9vmax;
+    font-size: 15px;
     cursor: pointer;
 }
 .form input {

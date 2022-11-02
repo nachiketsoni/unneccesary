@@ -1,6 +1,6 @@
 @font-face {
     font-family: Aeonik;
-    src: url(../font/Aeonik-Regular.otf);
+    src: url(../font/Aeonik-Regular.woff2);
     font-weight: 400;
 }
 *{
@@ -99,7 +99,7 @@ html,body{
     object-fit: cover;
 }
 #a h1{
-    margin-left: 2%;
+    margin-left: 10px;
     color: white;
     text-align: center;
     cursor: pointer;

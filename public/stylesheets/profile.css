@@ -1,6 +1,6 @@
 @font-face {
     font-family: Aeonik;
-    src: url(../font/Aeonik-Regular.otf);
+    src: url(../font/Aeonik-Regular.woff2);
     font-weight: 400;
 }
 *{
@@ -9,6 +9,7 @@
     box-sizing: border-box;
     font-family: Aeonik;
     font-weight: 400;
+    text-decoration: none;
 }
 
 html, body {
@@ -38,7 +39,7 @@ html, body {
 }
 #profile>h2{
  font-size:1.5vmax;
- width: 35vmax;
+ width: 90%;
  margin: 1.8vmax;
  white-space: nowrap;
  display: flex;
@@ -207,6 +208,7 @@ html, body {
 
 .sl1{
     display: flex;
+    position: relative;
     /* justify-content: space-around; */
     flex-wrap: wrap;
     width: 100%;
@@ -288,7 +290,8 @@ html, body {
 #user .left{
     display: flex;
     align-items: center ;
-
+    
+    color: black;
 }
 #user .left h3{
     width: 15vmax;
@@ -313,7 +316,7 @@ html, body {
     margin-right: 2vmax;
     font-size: 1.2vmax;
     white-space: nowrap;
-
+    
     font-weight: 400;
 }
 #user .right a{

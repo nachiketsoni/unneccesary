@@ -92,18 +92,24 @@ exports.search = AsyncError(async (req, res, next) => {
   res.render("search");
   // res.status(200).json("hompage");
 });
+
+
 exports.searchApi = AsyncError(async (req, res, next) => {
+  // console.log(req)
+  // var following = loggedInUser(req)
   try {
     
     const {search , type } = req.params;
     
     if(type === "user"){
-  const user = await User.find({
+      
+    
+      const user = await User.find({
     $or: [
       {email:{$regex:search,$options:"i"}},
       {name:{$regex:search,$options:"i"}},
     ]
-  })
+  })  
   res.status(200).json(user);
 }else if(type === "post"){
   const post = await Post.find({
@@ -122,7 +128,7 @@ exports.searchApi = AsyncError(async (req, res, next) => {
   res.status(404).json();
 }
 } catch (error) {
-  res.status(404).json("not found");
+  res.status(404).json(error +"not found");
 }
 
 });
