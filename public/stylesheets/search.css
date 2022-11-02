@@ -1,0 +1,224 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: Aeonik;
+    font-weight: 400;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+.click{
+    cursor: pointer !important;
+}
+#main{
+    /* overflow: hidden; */
+    position: relative;
+    width: 100%;
+    background-color: white;
+    padding-bottom: 5vmax;
+}
+#nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 25%;
+width: 100%;
+/* background-color: rgb(128, 128, 200); */
+}
+#sea{
+    margin-top: 3%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    /* height: 22%; */
+    width: 55%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0px 30px rgba(130, 43, 253, 0.25);
+    overflow: hidden;
+}
+#sea button{
+    border: none;
+}
+#io{
+    background-color:#822BFD;
+    width: 4vmax;
+    height:4vmax;
+    margin: .5vmax;
+    margin-right: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 16px;
+}
+#io img{
+    width: 2vmax;
+    filter: brightness(0) invert(1);
+}
+#sea input{
+    height: 100%;
+    width: calc(100% - 4vmax);
+    border: none;
+    font-size: 2.5vh;
+    outline: none;
+    padding: 1vmax;
+}
+.l{
+    width: 1.5px;
+    height: 70%;
+    border-radius: 100px;
+    margin-left: .5vmax;
+    background-color: #822BFD;
+}
+#nich{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 25%;
+    gap: 1vmax;
+    margin-top: 1vmax;
+    border-radius: 16px;
+
+    /* background-color: blue; */
+    box-shadow: 0px 0px 30px rgba(130, 43, 253, 0.25);
+}
+
+.chi{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: white;
+    padding: 1vmax;
+    cursor: pointer;
+    border: none;
+    color: #822BFD;
+
+}
+.chi:hover {
+    background-color:#822BFD ;
+    color: white;
+}   
+.chi h3{
+    font-size: 1.2vw;
+    font-weight: 400;
+}
+.sl1{
+    margin-top: 2%;
+    display: flex;
+    /* justify-content: space-around; */
+    padding: 0 5%;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+    height: 45%;
+    /* background-color: aquamarine; */
+}
+.post{
+    width: 20vmax;
+    height: 23vmax;
+}
+.post h3{
+    margin: .6vmax 1vmax;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 17vmax;
+}
+.postImg{
+    position: relative;
+    width: 20vmax;
+    height: 20vmax;
+    /* background-color: yellow; */
+    border-radius: 37px;
+    box-shadow: 0px 0px 30px rgba(130, 43, 253, .5);
+
+    overflow: hidden;
+    
+}
+.postImg a{
+    text-decoration: none;
+}
+.postImg a>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.postImg .owner{
+    position: absolute;
+    color: white;
+    top: 0%;
+    left: 0%;
+    display: flex;
+    align-items: center;
+    text-shadow: rgb(0, 0, 0) 0px 0px 10px; 
+    justify-content: center;
+}
+.postImg .owner img{
+    width: 3vmax;
+    height: 3vmax;
+    border-radius: 10px;
+    margin: 1vmax;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+#account{
+    display: flex;
+}
+#user{
+    border: 3px solid #822BFD;
+    border-radius: 16px;
+    height: 7vmax;
+    padding: 1vmax;
+    display: flex;
+    width: 50vmax;
+    justify-content: space-between;
+    align-items: center ;
+}
+#user .left{
+    display: flex;
+    align-items: center ;
+
+}
+#user .left h3{
+    width: 15vmax;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#user .left img{
+    width: 5vmax;
+    height: 5vmax;
+    border-radius: 10px;
+    margin: 1vmax;
+    object-fit: cover;
+    box-shadow: 0 0 30px rgba(130, 43, 253, .5);
+}
+#user .right {
+    display: flex;
+    align-items: center;
+    
+}
+#user .right h3{
+    margin-right: 2vmax;
+    font-size: 1.2vmax;
+    font-weight: 400;
+}
+#user .right a{
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+    padding: .7vmax;
+    border-radius: 10px;
+    background-color: #822BFD;
+    font-size: 1.2vmax;
+    font-weight: 400;
+}

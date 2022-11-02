@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../stylesheets/weather.css" />
+</head>
+
+<body>
+    <div id="main">
+        <div id="nav">
+            <div id="weth">
+                <img src="../images/doublecloud.png" alt="" /><span>Weather</span>
+            </div>
+            <form id="sea">
+                <button class="click" id="io">
+                    <img src="../images/SearchPurple.png" alt="" />
+                </button>
+                <div class="l"></div>
+                <input type="search" id="searchBar" list="Suggestion" placeholder="Search City" />
+                <datalist id="Suggestion"> </datalist>
+            </form>
+        </div>
+        <div id="cel">
+            <h1>City</h1>
+            <h2>Temperature</h2>
+            <div class="sub">
+                <div id="dec">
+                    <img width="30" src="../images/cloud (1).png" alt="" /><span>Broken Cloud</span>
+                </div>
+
+                <h3>Max  | Min</h3>
+                <h3>Humidity</h3>
+                <h3>Pressure </h3>
+            </div>
+        </div>
+    </div>
+    <% include Partial/navigation.ejs %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoEAe_TGzwMiWTNmLroWsGCBfhGKtokmU&libraries=places"></script> -->
+        <script>
+            // $(document).ready(function(){
+                function initMap() {
+                    
+                    var autocomplete;
+                    var id = "searchBar";
+                    autocomplete = new google.maps.places.Autocomplete((document.getElementById(id)), {
+                            types: ['geocode'],
+                        });
+                    
+                   
+                    }
+                        </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoEAe_TGzwMiWTNmLroWsGCBfhGKtokmU&libraries=places&callback=initMap"
+        async defer></script>
+        <!-- <script>
+            var timers = "";
+            var timer = (searchValue) => {
+                timers = setTimeout(() => {
+                    Suggestion(searchValue);
+                }, 2000);
+            };
+            let searchInput = document.querySelector("#sea input");
+            searchInput.addEventListener("input", (e) => {
+                let searchValue = e.target.value;
+
+                console.log(searchValue);
+                clearTimeout(timers);
+
+                if (searchValue.length % 3 === 0 && searchValue.length > 0) {
+                    Suggestion(searchValue);
+                } else {
+                    timer(searchValue);
+                }
+            });
+
+            var Suggestion = (cityname) => {
+                $.ajax({
+                    method: "GET",
+                    url: `https://api.api-ninjas.com/v1/city?limit=5&name=${cityname}`,
+                    params: {
+                        name: cityname,
+                        limit: 5,
+                    },
+                    headers: { "X-Api-Key": "vGXd/v5ChmFHiVLkLuBWhw==bCoO2aTfxJqU7A4J" },
+                    contentType: "application/json",
+                    success: function (result) {
+                        console.log(result);
+                        let Suggestion = document.querySelector("#Suggestion");
+                        Suggestion.innerHTML = "";
+                        result.forEach((element) => {
+                            console.log(element);
+                            Suggestion.innerHTML += `<option value="${element.name}">`;
+                        });
+                    },
+                    error: function ajaxError(jqXHR) {
+                        console.error("Error: ", jqXHR.responseText);
+                    },
+                });
+            };
+            var errorData = () => {
+                    
+                    document.querySelector("#cel").innerHTML = "<h1>No Data Found for this city</h1>";
+
+                }
+
+            var successData = (data) => {
+                console.log(data);
+                if (!data) {
+                    document.querySelector("#cel").innerHTML = "<h1>No Data Found for this city</h1>";
+
+                }
+                const { name, main, weather } = data;
+                const { temp, temp_max, temp_min, humidity, pressure } = main;
+                const { description, icon } = weather[0];
+                console.log(name, temp, temp_max, temp_min, description, icon);
+
+                document.querySelector("#cel").innerHTML = `
+            <h1>${name}</h1>
+        <h2>${(temp - 273).toFixed(1)}°C</h2>
+        <div class="sub">
+          <div id="dec">
+            <img width="30" src="../images/icons/${icon}.png" alt="" /><span
+              >${description}</span
+            >
+          </div>
+
+          <h3>Max : ${(temp_max - 273).toFixed(1)} | Min : ${(temp_min - 273).toFixed(1)}</h3>
+          <h3>Humidity : ${humidity}</h3>
+          <h3>Pressure : ${pressure}mb</h3>
+        </div>
+            `;
+        };
+        
+            const searchSubmit = document.querySelector("#sea");
+            searchSubmit.addEventListener("submit", (e) => {
+                e.preventDefault();
+                document.querySelector("#cel").innerHTML = '<img src="../images/loader.gif" alt="">';
+                let searchValue = document.querySelector("#sea input").value;
+                console.log(searchValue);
+                var settings = {
+                    url: `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=7cac485e48d9d91f7ddf5d5ba263510c`,
+                    method: "GET",
+                    success: successData,
+                    error: errorData,
+                        };
+
+
+                $.ajax(settings)
+             
+            document.querySelector("#sea input").value = "";
+
+
+            });
+        </script> -->
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+  type="text/css"
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css"
+/>
+<link
+  type="text/css"
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-classic.css"
+/>
+    <link rel="stylesheet" href="../stylesheets/singlePost.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="main">
+
+
+      <div class="page">
+        <div id="foam">
+          <div id="due">
+            <img src="<%= post.image.url %>" alt="<%= post.image.public_id %>" />
+          </div>
+          <div id="due2">
+            <div id="a">
+              <div id="ph">
+                <a href="/user/<%= post.owner._id %>">
+                <img
+                  src="<%= post.owner.avatar.url %>"
+                  alt="<%= post.owner.avatar.public_id %>"
+                />
+              </a>
+              </div>
+              <h1><a style="white-space: nowrap;" href="/user/<%= post.owner._id %>"> <%= post.owner.name %></a></h1>
+              <a id="add" href="/follow/<%= post.owner._id %>">
+                <% if( user.following.includes(post.owner._id)){ %> 
+                 Unfollow  <img src="../images/add.png" alt=""> 
+                <% } else { %>
+                  Follow  <img src="../images/add.png" alt="">
+                <% } %>
+                 </a>
+            </div>
+            <h2><%= post.title %></h2>
+            <p id="body"><%= post.body %></p>
+            <div id="allcomment">
+
+              <div id="commentForm">
+              <div id="commentSection">
+                <% if(post.comments.length > 0){%>
+                  <% post.comments.forEach(e => { %>
+                    
+                    <div id="comm" ><a href="/profile/<%= e.commentOwner._id %>"><img src="<%= e.commentOwner.avatar.url %>" alt=""></a>
+                      <p> <%= e.commentBody %></p>
+                      
+                      <a href="/delete/comment/<%= post._id %>/<%= e._id %> ">
+                      <% if(user._id.toString()  === e.commentOwner._id.toString()) {%>
+
+                         <img id="trash" src="../images/trash.png" alt=""></a>
+                         <% } %> 
+                       </div>
+                   
+                    <% }); %>
+                  
+                <% }else{ %>
+                  <h1 style="font-weight: 400; margin: 1vmax 2vmax;" >No Comment yet 🥺</h1>
+               <% } %>
+              
+              </div>
+              <form id="sendForm" action="/comment/<%= post._id %>" method="post"><input type="text" id="comment" name="commentBody" placeholder="Comment"> <button type="submit" id="sendBtn">SEND</button></form>
+            </div>
+            
+          </div>
+            <div id="dd">
+              <div id="download" onclick="download(this)" data-image="<%= post.image.url %>" data-title="<%= post.title %>" class="e click">
+                <img src="/images/DownloadPurple.png" alt="" />
+              </div>
+              <div id="sharebtn"  class="e click">
+               <div id="share"><a href="https://wa.me/?text=urlencodedtext&photo=<%= post.image.url %>" target="_blank" rel="noopener noreferrer"> whatsapp</a></div>
+                <img src="../images/SharePurple.png" alt="" />
+              </div>
+              <div onclick="like(this, '<%= post._id %>')" class="e click">
+                <% if (user.fav.includes(post._id)) { %>
+                  <i class="ri-heart-fill"></i>
+                  
+                  <%  } else { %> 
+                    
+                    <i id="icon" class="ri-heart-line"></i>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
+    
+     
+    </div>
+    <% include Partial/navigation.ejs %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js" integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+  src="https://kit.fontawesome.com/7368c40b21.js"
+  crossorigin="anonymous"
+></script>
+    <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"
+  ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script>
+         $("#share").jsSocials({
+    showLabel: false,
+    showCount: false,
+    shares: [
+
+      {
+    share: "linkedin",
+    icon:'fab fa-linkedin',  
+
+    text: "Check Out This Awesome Post ", // tweet text (optional)
+    via: "sheryianscodingschool",       // custom twitter sharing param 'via' (optional)
+    hashtags: "sheryians,unneccesary, N9"   // custom twitter sharing param 'hashtags' (optional)
+},
+      {
+    share: "twitter", 
+    icon:'fab fa-twitter',         
+    text: "Check Out This Awesome Post ", // tweet text (optional)
+    via: "sheryianscodingschool",       // custom twitter sharing param 'via' (optional)
+    hashtags: "sheryians,unneccesary, N9"
+},
+      {
+    share: "facebook",   
+    icon:'fab fa-facebook',
+    text: "Check Out This Awesome Post ", // tweet text (optional)
+    via: "sheryianscodingschool",       // custom twitter sharing param 'via' (optional)
+    hashtags: "sheryians,unneccesary, N9"   // custom twitter sharing param 'hashtags' (optional)
+},
+      {
+    share: "whatsapp",
+    icon:'fab fa-whatsapp',          
+    text: "Check Out This Awesome Post ", // tweet text (optional)
+    via: "sheryianscodingschool",       // custom twitter sharing param 'via' (optional)
+    hashtags: "sheryians,unneccesary, N9"   // custom twitter sharing param 'hashtags' (optional)
+},
+      {
+    share: "pinterest",   
+    icon:'fab fa-pinterest',        
+    text: "Check Out This Awesome Post ", // tweet text (optional)
+    via: "sheryianscodingschool",       // custom twitter sharing param 'via' (optional)
+    hashtags: "sheryians,unneccesary, N9"   // custom twitter sharing param 'hashtags' (optional)
+},
+      
+    ],
+  });
+
+      </script>
+   
+   
+   <script>
+            const comment  = document.getElementById('commentForm');
+            comment.scrollTop = comment.scrollHeight;
+
+              const download = (e)=>{
+                let image = e.getAttribute("data-image");
+                const title = e.getAttribute("data-title");
+                saveAs(image,title + ".png");
+              }
+              const likeQuery = async (id)=>{
+                try{
+                  await axios.get(`/likes/${id}`)
+                  console.log("gaya")
+                } catch(err){
+                  console.log(err);
+                }
+              }
+              const like = (e, id)=>{
+                likeQuery(id)
+                if(e.children[0].className == "ri-heart-line"){
+                  e.children[0].classList.add("ri-heart-fill");
+                  e.children[0].classList.remove("ri-heart-line");
+                }else{
+                  e.children[0].classList.remove("ri-heart-fill");
+                  e.children[0].classList.add("ri-heart-line");
+                }
+              }
+    </script>
+  </body>
+</html>

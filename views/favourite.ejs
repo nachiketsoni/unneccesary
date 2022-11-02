@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../stylesheets/favourite.css" />
+  </head>
+  <body>
+    <div id="main">
+      <div id="nav">
+        <h2>favourites</h2>
+        <div id="hea">
+          <img src="../images/heartEmoji.png" alt="" />
+        </div>
+      </div>
+      <div class="sl1">
+        <% if(fav.length > 0 ){ %> 
+        <%fav.forEach(e => { %>
+        <div class="post">
+          <div class="postImg">
+            <img src="<%= e.image.url %> " alt="<%= e.image.public_id %>" />
+              
+            <div class="owner">
+              <img
+                src="<%=e.owner.avatar.url%>"
+                alt="<%=e.owner.avatar.url%>"
+              /><span><%= e.owner.name %></span>
+            </div>
+          </div>
+          <h3><%= e.title %></h3>
+        </div>
+        <%})%>
+        <%}else{%>
+          <h1 style="position: absolute; left:50%; top: 50%; transform: translate(-50%,-50%); font-size: 3vmax; font-weight: 400;" >No Favourite Post Added Yet ☹️</h1>
+        <%}%>
+        </div>
+    </div>
+    <%- include('Partial/navigation.ejs') %>
+  </body>
+</html>

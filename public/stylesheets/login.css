@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+body {
+  background: #e0e0e0;
+  
+}
+#signup{
+    display: none;
+}
+
+.login {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+  font-family: 'Comfortaa', cursive;
+  border-radius: 50px;
+}
+.form h1{
+    font-weight: 100;
+    color: #a367f7;
+}
+.form {
+  position: absolute;
+  left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  z-index: 1;
+  background: #FFFFFF;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 40vmax;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow:  -11px 11px 22px #bebebe, 11px -11px 22px #ffffff;
+}
+.form ul li{
+    text-align: left;
+    font-size: .7vmax;
+    margin-bottom: 5px;
+}
+.form small{
+    display: block;
+    margin-top: 2vmax;
+    color: rgb(28, 88, 240);
+    font-size: .9vmax;
+    cursor: pointer;
+}
+.form input {
+  outline: 0;
+  background: #e0e0e0;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: 'Comfortaa', cursive;
+  border-bottom:1px solid #822BFD;
+}
+
+.form input:focus {
+  background: #e0e0e0;
+}
+
+
+.form button {
+  font-family: 'Comfortaa', cursive;
+  margin-top: 20px;
+  text-transform: uppercase;
+  outline: 0;
+  background-color: #a465fbb2;
+  /* border: 2px solid #822BFD; */
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  padding: 15px;
+  color: #fbfbfb;
+  font-size: 14px;
+  font-weight: 900;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:active {
+  background: #395591;
+}

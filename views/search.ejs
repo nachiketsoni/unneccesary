@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../stylesheets/search.css" />
+  </head>
+  <body>
+    <div id="main">
+      <form id="nav">
+        <div id="sea">
+          <button onclick="searchQuery('post')" class="click" id="io">
+            <img src="../images/SearchPurple.png" alt="" />
+          </button>
+          <div class="l"></div>
+          <input id="search" placeholder="search" type="text" />
+        </div>
+        <div id="nich">
+          <button onclick="searchQuery('post')" class="chi">
+            <h3>Posts</h3>
+          </button>
+          <button onclick="searchQuery('user')" class="chi">
+            <h3>Accounts</h3>
+          </button>
+          <button onclick="searchQuery('hashtag')" class="chi">
+            <h3>Hashtags</h3>
+          </button>
+        </div>
+      </form>
+      <div class="sl1">
+        <!-- <div class="post">
+          <div class="postImg">
+            <a href="">
+              <img
+                src="https://images.unsplash.com/photo-1666834475635-910066e38f90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+                alt=""
+              />
+            </a>
+            <a href="" class="owner">
+              <img
+                src="https://images.unsplash.com/photo-1666834475635-910066e38f90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+                alt=""
+              /><span>nxchikxt</span>
+            </a>
+          </div>
+          <h3>Design Of The Day</h3>
+        </div> -->
+        <h1
+          style="
+            position: absolute;
+            left: 50%;
+            top: 100% !important;
+            z-index: 99999999999999999999;
+            transform: translate(-50%, 0%);
+            font-size: 3vmax;
+            font-weight: 400;
+            color: rgba(110, 110, 110, 0.725);
+          "
+        >
+          No Data to show Yet ☹️
+        </h1>
+
+        <!-- <div id="account">
+            <div id="user">
+              <div class="left">
+
+                <img src="https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1854&q=80" alt="">
+                <h3>nxchikxt</h3>
+              </div>
+              <div class="right">
+                <h3>Follower : 12K</h3>
+                <h3> Following : 1K</h3>
+                <a href=""> Follow +</a>
+              </div>
+
+            </div>
+        </div> -->
+      </div>
+    </div>
+    <% include Partial/navigation.ejs %>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      const form = document.getElementById("nav");
+      let input = document.getElementById("search");
+
+      var successData = (data) => {
+        console.log(data);
+        document.querySelector(".sl1").innerHTML = "";
+        if (data.length == 0) {
+          document.querySelector(".sl1").innerHTML = `
+          <h1 style="position: absolute; left:50%; top: 100%; z-index:999999999999; transform: translate(-50%,0%); font-size: 3vmax; font-weight: 400; color: rgba(110, 110, 110, 0.725);" >No Data Found ☹️</h1>
+          
+          `;
+        } else {
+          try {
+            
+            data.forEach((e) => {
+              document.querySelector(".sl1").innerHTML += `
+            <div class="post">
+            <div class="postImg">
+              <a href="/user/${e._id}">
+                <img
+                  src="${e.image.url}"
+                  alt="${e.image.public_id}"
+                />
+                </a>
+              <a href="/user/${e.owner._id}" class="owner">
+                <img
+                  src="${e.owner.avatar.url}"
+                  alt="${e.owner.avatar.public_id}"
+                /><span>${e.owner.name}</span>
+                </a>
+            </div>
+            <h3>${e.title}</h3>
+          </div>
+              `;
+            });
+          } catch (error) {
+            document.querySelector(".sl1").innerHTML = `
+          <h1 style="position: absolute; left:50%; top: 100%; z-index:999999999999; transform: translate(-50%,0%); font-size: 3vmax; font-weight: 400; color: rgba(110, 110, 110, 0.725);" >No Data Found ☹️</h1>
+            `;
+          }
+          }
+      };
+
+      var userData = (data) => {
+        console.log(data);
+        document.querySelector(".sl1").innerHTML = "";
+        if (data.length > 0) {
+          try {
+            data.forEach((e) => {
+              document.querySelector(".sl1").innerHTML += `
+            <div id="account">
+            <div id="user">
+              <div class="left">
+  
+                <img src="${e.avatar.url}" alt="">
+                <h3>${e.name}</h3>
+              </div>
+              <div class="right">
+                <h3>Follower : ${e.following.length}</h3>
+                <h3> Following : ${e.followers.length}</h3>
+                 
+                <a href="/follow/${e._id}"> Follow +</a>
+              </div>
+  
+            </div>
+        </div>
+              `;
+            });
+          } catch (error) {
+            document.querySelector(".sl1").innerHTML = `
+        <h1 style="position: absolute; left:50%; top: 100%;  z-index:999999999999; transform: translate(-50%,0%); font-size: 3vmax; font-weight: 400; color: rgba(110, 110, 110, 0.725);" >No Data Found ☹️</h1>
+          `;
+          }
+        } else {
+          document.querySelector(".sl1").innerHTML = `
+        <h1 style="position: absolute; left:50%; top: 100%;  z-index:999999999999; transform: translate(-50%,0%); font-size: 3vmax; font-weight: 400; color: rgba(110, 110, 110, 0.725);" >No Data Found ☹️</h1>
+          
+          `;
+        }
+      };
+
+      var errorData = (data) => {
+        console.error(data);
+        document.querySelector(".sl1").innerHTML = `
+        <h1 style="position: absolute; left:50%; top: 100%;  z-index:999999999999; transform: translate(-50%,-50%); font-size: 3vmax; font-weight: 400; color: rgba(110, 110, 110, 0.725);" >No Data Found ☹️</h1>
+        
+        `;
+      };
+
+      const searchQuery = (type) => {
+        let search = document.getElementById("search");
+
+        var settings = {
+          method: "GET",
+          url: `/api/search/${type}/${search.value}`,
+          success: type === "user" ? userData : successData,
+          error: errorData,
+        };
+        $.ajax(settings);
+      };
+
+      form.addEventListener("submit", (e) => {
+        document.querySelector(".sl1").innerHTML =
+          '<img  style="position: absolute; left:50%; top: 50%;  z-index:999999999999; transform: translate(-50%,-50%); src="../images/loader.gif" alt="">';
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>

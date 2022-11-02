@@ -1,0 +1,144 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: aeonik;
+    font-weight:400;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+.click{
+    cursor: pointer !important;
+}
+#main{
+    /* overflow: hidden; */
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+#nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #822BFD; */
+    height: 25%;
+    width: 100%;
+/* background-color: rgb(128, 128, 200); */
+}
+#weth{
+    height: 50%;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    /* background-color: rgb(43, 226, 113); */
+}
+#weth span{
+    font-size: 5vmax;
+    font-weight: 400;
+    margin-left: -50px;
+    position: relative;
+    z-index: 0;
+}
+#weth img {
+    position: relative;
+    z-index: 1;
+    height: 7vmax;
+
+}
+#sea{
+    margin-top: 1vmax;
+    margin-left: 2vmax;
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    height: 5vmax;
+    width: 55%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0px 30px rgba(130, 43, 253, 0.25);
+    overflow: hidden;
+}
+#io{
+    background-color:#822BFD;
+    width: 4vmax;
+    height:4vmax;
+    margin: .5vmax;
+    margin-right: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+}
+#io img{
+    width: 2vmax;
+    filter: brightness(0) invert(1);
+}
+#sea input{
+    height: 100%;
+    width: calc(100% - 4vmax);
+    border: none;
+    font-size: 2.5vh;
+    outline: none;
+    padding: 1vmax;
+}
+.l{
+    width: 1.5px;
+    height: 70%;
+    border-radius: 100px;
+    margin-left: .5vmax;
+    background-color: #822BFD;
+}
+#nich{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 25%;
+    width: 30%;
+    /* background-color: blue; */
+}
+#cel{
+    position: absolute;
+width:40vmax;
+height:25vmax;
+left: 50%;
+top: 55%;
+padding: 2.5vmax;
+transform: translate(-50%,-50%);
+
+/* background: #f90606; */
+box-shadow: 0px 0px 30px rgba(130, 43, 253, 0.25);
+border-radius: 54px;
+}
+#cel>img{
+   width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#cel h1{
+    font-size: 3vmax;
+    /* color: #822BFD; */
+}
+#cel h2{
+    font-size: 2.5vmax;
+    /* color: #822BFD; */
+}
+
+.sub{
+    font-size: 1.1vmax;
+    position: relative;
+    top: 5vmax;
+    line-height: 1.8vmax;
+}
+.sub #dec{
+    display: flex;
+    align-items: center;
+    gap: 1vmax;
+    font-size: 1.3vmax;
+    margin-bottom: .7vmax;
+}

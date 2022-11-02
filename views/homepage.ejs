@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-classic.css"
+    />
+    <link rel="stylesheet" href="../stylesheets/homepage.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="main">
+      <% post.forEach(e => { %>
+
+      <div class="page">
+        <div id="foam">
+          <div id="due">
+            <div id="a">
+              <div id="ph">
+                  <img
+                  src="<%= e.owner.avatar.url %>"
+                  alt="<%= e.owner.avatar.public_id %>"
+                  />
+                </div>
+               <a href="/user/<%=e.owner._id%>"><h1><%= e.owner.name %></h1></a> 
+              </div>
+              <a href="/singlePost/<%=e._id%>">
+
+              <img src="<%= e.image.url %>" alt="<%= e.image.public_id %>" />
+            </a>
+
+            </div>
+          <div id="due2">
+            <h2><%= e.title %></h2>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+
+      <div onclick="scrolly()" id="scroll">
+        <img src="../images/DownWhite.png" alt="" />
+      </div>
+    </div>
+    <% include Partial/navigation.ejs %>
+
+   
+    <script>
+      const scrolly = () => {
+        document.querySelector("#main").scrollBy(0, window.innerHeight);
+      };
+
+   </script>
+  </body>
+</html>

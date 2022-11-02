@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../stylesheets/profile.css">
+</head>
+<body>
+   <div id="main">
+    <div id="left">
+        <form action="/update" method="post" enctype="multipart/form-data" id="profile">
+            
+            <a href="">
+                <div id="icon" > <img src="../images/EditPurple.png" alt=""></div>
+                <img src="<%= user.avatar.url  %> " alt="<%= user.avatar.public_id %>">
+                
+                <input disabled class="inp" name="avatar" type="file">
+            </a>
+            <h2><span onclick="searchQuery('posts')" >Post : <%= user.posts.length %></span> <span onclick="searchQuery('followers')" >Followers : <%=user.followers.length%></span><span onclick="searchQuery('following')" >Following : <%= user.following.length %></span></h2>
+            <div  id="detailsForm" >
+
+                <div class="two">
+                    <input placeholder="Name" disabled class="inp" name="Name" value="<%= user.name %>" type="text" >
+                <input placeholder="Contact" disabled name="contact" value="<%= user.contact %>" inputmode="numeric" maxlength="10" class="inp" type="tel" >
+            </div>
+            <div class="one">
+                <input placeholder="Email" disabled name="email"  value="<%= user.email %>" class="inp"  type="text" >
+            </div>
+            <div class="one">
+                <input placeholder="Address" disabled name="address"  value="<%= user.address %>" class="inp"  type="text" >
+            </div>
+           
+            <div id="btns">
+                <button class="btn" type="submit" onclick="toggle(this)"  id="save"  ><img src="../images/EditPurple.png" alt=""></button>
+                <a class="btn" href="/logout"  id="Logout"><img src="../images/LogOutPurple.png" alt=""></a>
+            </div>
+          </div>
+
+
+        </form>
+    </div>
+    <div class="line"></div>
+    <div id="right">
+        <div class="sl1">
+            <!-- <div class="post">
+              <div class="postImg">
+                <a href="">
+                  <img
+                    src="https://images.unsplash.com/photo-1666834475635-910066e38f90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+                    alt=""
+                  />
+                </a>
+                <a href="" class="owner">
+                  <img
+                    src="https://images.unsplash.com/photo-1666834475635-910066e38f90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+                    alt=""
+                  /><span>nxchikxt</span>
+                </a>
+              </div>
+              <h3>Design Of The Day</h3>
+            </div> -->
+    
+            <!-- <div id="account">
+                <div id="user">
+                  <div class="left">
+    
+                    <img src="https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1854&q=80" alt="">
+                    <h3>nxchikxt</h3>
+                  </div>
+                  <div class="right">
+                    <h3>Follower : 12K</h3>
+                    <h3> Following : 1K</h3>
+                    <a href=""> Follow +</a>
+                  </div>
+    
+                </div>
+            </div> -->
+          </div>
+    </div>
+   </div>
+   <% include Partial/navigation.ejs %>
+   <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+   <script>
+       var postData = (data) => {
+        console.log(data);
+        document.querySelector(".sl1").innerHTML = "";
+        if (data.length == 0) {
+          document.querySelector(".sl1").innerHTML = "<h1>No Results</h1>";
+        } else {
+          data.forEach((e) => {
+            document.querySelector(".sl1").innerHTML += `
+            <div class="post">
+            <div class="postImg">
+              <a href="/singlePost/${e._id}">
+                <img
+                  src="${e.image.url}"
+                  alt="${e.image.public_id}"
+                />
+                </a>
+              <a href="/user/${e.owner._id}" class="owner">
+                <img
+                  src="${e.owner.avatar.url}"
+                  alt="${e.owner.avatar.public_id}"
+                /><span>${e.owner.name}</span>
+              </a>
+            </div>
+            <h3>${e.title}</h3>
+          </div>
+              `;
+          });
+        }
+      };
+
+         var successData = ( alldata ) => {
+             let data = alldata.followers || alldata.following || alldata.posts;
+             console.log(data);
+        document.querySelector(".sl1").innerHTML = "";
+        if (data.length == 0) {
+          document.querySelector(".sl1").innerHTML = "<h1>No Results</h1>";
+        } else {
+          data.forEach((e) => {
+            document.querySelector(".sl1").innerHTML += `
+            <div id="account">
+            <div id="user">
+              <div class="left">
+
+                <img src="${e.avatar.url}" alt="">
+                <h3>${e.name}</h3>
+              </div>
+              <div class="right">
+                <h3> Followers : ${e.followers.length}</h3>
+                <h3>Following : ${e.following.length}</h3>
+                 
+                <a id="follow" href="/follow/${e._id}"> Unfollow</a>
+              </div>
+
+            </div>
+        </div>
+              `;
+              if(alldata.following.map((eme)=>(eme._id.toString() === e._id.toString() ))[0] === true){
+                  document.querySelector("#follow").innerHTML = "Unfollow";
+                  
+            }else{
+                document.querySelector("#follow").innerHTML = "Follow";
+                }
+                });
+        }
+      };
+             
+      var errorData = (data) => {
+        console.error(data);
+        document.querySelector(".sl1").innerHTML = "<h1>No Results</h1>";
+      };
+
+        const searchQuery = (type) => {
+            document.querySelector(".sl1").innerHTML =
+              '<img style=" object-fit:cover; " src="../images/loader.gif" alt="">';
+
+        var settings = {
+          method: "GET",
+          url: `/userDataAPI/${type}`,
+          success: type === "posts" ? postData : successData,
+          error: errorData,
+        };
+        $.ajax(settings);
+      };
+
+      var flag = false
+      const toggle = (e) =>{
+        console.log("chala")
+         flag = !flag
+        if(flag){
+          console.log("if")
+          e.innerHTML = "Save";
+          document.querySelector("#icon").style.display = "block";
+          document.querySelectorAll(".inp").forEach((el)=>(el.removeAttribute("disabled")));
+          document.querySelector("#profile").addEventListener("submit",(e)=>e.preventDefault())
+          // e.setAttribute("type", "submit");
+
+        }
+        else{
+          console.log("else")
+          document.querySelector("#profile").submit();
+          document.querySelectorAll(".inp").forEach((el)=>(el.setAttribute("disabled",true)));
+          document.querySelector("#icon").style.display = "none";
+
+          e.innerHTML = `<img src="../images/EditPurple.png" alt="">`;
+        }
+      }
+
+
+
+   </script>
+</body>
+</html>
