@@ -113,6 +113,8 @@
     margin-top: 1vw;
     padding: .5vw 1vw;
     color: white;
+    box-shadow:  0 0 30px rgba(130, 43, 253, 0.5) !important;
+    background-color: rgba(130, 43, 253) !important;
     border-radius: 1vw;
     display:inline-block;
     flex-flow: row wrap;
@@ -290,7 +292,9 @@
     text-align: left;
   }
   g{
-    color: green;
+    color: rgba(130, 43, 253);
+    box-shadow:  0 0 30px rgba(130, 43, 253, 0.7);
+
     margin-left: 1vw;
     margin-top: -.5vw;
     font-size: 5vw;
