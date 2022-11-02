@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require("cors")
 const errorMiddleware = require("./middleware/error");
-var indexRouter = require('./routes/indexRouter');
+var indexRouter = require('./routes/index.js');
 
 require("./config/cloudinary")
 require("./models/mongoDBconnection").DBconnection()
