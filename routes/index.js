@@ -5,19 +5,18 @@ const {homepage ,signup ,login , logout ,update, follow, all, createPost, commen
 
 /** @api GET / homepage */
 router.get('/',isLoggedIn, homepage);
-/** @api GET / profile */
+/** @api GET / /singlePost/: post ki id */
 router.get('/singlePost/:id',isLoggedIn, singlePost);
 /** @api GET / profile */
 router.get('/profile',isLoggedIn, profile);
-/** @api GET / profile */
+/** @api GET / /user/ profile ki id */
 router.get('/user/:id',isLoggedIn, clickedUserProfile);
 /** @api GET / userDataAPI */
 router.get('/userDataAPI/:type',isLoggedIn, userDataAPI);
-/** @api GET / login */
+/** @api GET / clickeduser/api/:id/:type */
 router.get('/clickeduser/api/:id/:type',isLoggedIn, clickedUser);
 /** @api GET / login */
 router.get('/loginPage', loginPage);
-
 /** @api GET / newPost */
 router.get('/newPost', isLoggedIn , newPost);
 /** @api GET / weather */
@@ -61,10 +60,11 @@ router.get("/delete/comment/:postID/:commentID",isLoggedIn, commentDelete);
 /**@api GET / all  */
 router.get("/all",isLoggedIn, all);
 
+/**@api GET / Bot  */
 router.get("/bot/search/:message", isLoggedIn, bot);
 
-/**@api GET / *  */
-// router.get("*", others);
+/**@api GET / "*"  */
+router.get("*", others);
 
 module.exports = router;
 
