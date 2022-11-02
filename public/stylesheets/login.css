@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-
+@font-face {
+  font-family: Aeonik;
+  src: url(../font/Aeonik-Regular.otf);
+  font-weight: 400;
+}
 body {
   background: #e0e0e0;
   

@@ -1,8 +1,13 @@
+@font-face {
+    font-family: Aeonik;
+    src: url(../font/Aeonik-Regular.otf);
+    font-weight: 400;
+}
 *{
     padding: 0%;
     margin: 0%;
     box-sizing: border-box;
-    font-family: aeonik;
+    font-family: Aeonik;
     font-weight: 400;
 }
 
