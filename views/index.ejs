@@ -101,12 +101,13 @@
           <form action="/signup" method="post" class="login-form">
             <input type="text" placeholder="Name" name="name" required  />
             <input type="text" placeholder="Email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-            <input type="password" placeholder="Password" name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" />
+            <input type="password" placeholder="Password (e.g : Dhanesh@123) " name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" />
             <ul>
+                <h4>Password Should Be :</h4>
                 <li>At least one lowercase letter(a - z).</li>
                 <li>At least one uppercase letter(A - Z).</li>
-                <li> At least one numeric value(0-9).</li>
-                <li>At least one special symbol(!@#$%^&*=+-_)</li>
+                <li>At least one numeric value(0-9).</li>
+                <li>At least one special symbol(@$!%*#?&)</li>
                 <li>The total length should be greater than or equal to 8.</li>
             </ul>
             <small onclick="login()" >Already had an Account?</small>

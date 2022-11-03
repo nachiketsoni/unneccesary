@@ -191,7 +191,7 @@ padding: .1vmax 1vmax;
     border:none;
     color: white;
     width: 5vmax;
-   
+   cursor: pointer !important;
 }
 #dd{
     display: flex;
